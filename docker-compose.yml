@@ -1,10 +1,17 @@
 version: '3.4'
 
 services:
-  fastapichatapp:
-    image: fastapichatapp
+  chatappapi:
+    image: chatappapi
     build:
-      context: .
+      context: ./api
       dockerfile: ./Dockerfile
     ports:
       - 8000:8000
+  chatappweb:
+    image: chatappweb
+    build:
+      context: ./web
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
