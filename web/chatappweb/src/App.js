@@ -1,22 +1,19 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 
+const socket = new WebSocket("ws://127.0.0.1:8000/ws");
+
 function App() {
   const [helloText, setHelloText] = useState("None");
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setHelloText(data);
-      })
-      .catch((err) => {
-        setHelloText("Nothing came back");
-      });
+    socket.onopen = () => {
+      console.log("Connected to backend!");
+    };
+
+    socket.onmessage = (message) => {
+      setHelloText(message.data);
+    };
   }, []);
 
   return (
