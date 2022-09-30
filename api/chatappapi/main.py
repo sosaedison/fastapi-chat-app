@@ -1,3 +1,4 @@
+from datetime import datetime
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -25,8 +26,8 @@ def home():
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
-    # while True:
-    print("someone connected!")
-    # data = await websocket.receive_text()
-    await websocket.send_text(f"Message text was")
-    print("sent")
+    while True:
+        data = await websocket.receive_text()
+        await websocket.send_json(
+            {"msg": data, "created": datetime.now().strftime("%m/%d/%Y %-I:%M %p")}
+        )
