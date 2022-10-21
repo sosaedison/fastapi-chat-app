@@ -1,12 +1,18 @@
-from fastapi import FastAPI, WebSocket
+from fastapi import Depends, FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from websockets.exceptions import ConnectionClosedError
 from starlette.websockets import WebSocketDisconnect
 
+from sqlalchemy.orm import Session
 
 from websocket_manager import ConnectionManager
 
+from deps import get_db
 from utils import now_as_str
+from schemas import UserIn, UserOut
+from database import SessionLocal, engine, Base
+
+Base.metadata.create_all(bind=engine)
 
 manager = ConnectionManager()
 
@@ -35,6 +41,12 @@ app.add_middleware(
 @app.get("/")
 def home():
     return "Hello world"
+
+
+@app.post("/user/login")
+def user_login(user: UserIn, db: Session = Depends(get_db)):
+    print(user)
+    return "OK"
 
 
 @app.websocket("/ws")

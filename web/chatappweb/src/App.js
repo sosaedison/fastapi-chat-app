@@ -31,6 +31,19 @@ function App() {
     setMessages([...messages, message.msg]);
   };
 
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+      callback: handleGoogleResponseCallBack,
+    });
+
+    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+      theme: "outline",
+      size: "large",
+    });
+  });
+
   return (
     <div className="App">
       <div id="chat">
