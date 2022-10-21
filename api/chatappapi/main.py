@@ -3,10 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from websockets.exceptions import ConnectionClosedError
 from starlette.websockets import WebSocketDisconnect
 
+
 from websocket_manager import ConnectionManager
 
 from utils import now_as_str
-from models import UserIn, UserOut
 
 manager = ConnectionManager()
 
@@ -26,16 +26,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+"""
+- when a new user connects, they should be sent all the messages that they don't already have 
+- the messages only live while the app is live
+"""
+
 
 @app.get("/")
 def home():
     return "Hello world"
-
-
-@app.post("/user/login")
-def user_login(user: UserIn):
-    print(user)
-    return "OK"
 
 
 @app.websocket("/ws")
