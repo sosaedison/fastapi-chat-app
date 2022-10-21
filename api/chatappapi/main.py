@@ -32,11 +32,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-"""
-- when a new user connects, they should be sent all the messages that they don't already have 
-- the messages only live while the app is live
-"""
-
 
 @app.get("/")
 def home():
