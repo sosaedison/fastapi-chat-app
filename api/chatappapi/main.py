@@ -5,7 +5,7 @@ from websockets.exceptions import ConnectionClosedError
 from starlette.websockets import WebSocketDisconnect
 
 from sqlalchemy.orm import Session
-from models import User
+from models import User, Chat
 
 from websocket_manager import ConnectionManager
 
@@ -63,14 +63,23 @@ def user(user: UserIn, db: Session = Depends(get_db)) -> UserOut:
 
 
 @app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
+async def websocket_endpoint(websocket: WebSocket, db: Session = Depends(get_db)):
     await manager.connect(websocket=websocket, messages=chat_db)
     try:
         while True:
             print("RECEIVING AND SENDING MESSAGES")
-            data = await websocket.receive_text()
-            msg = {"msg": data, "created": now_as_str()}
-            chat_db.append(msg)
+            data: str = await websocket.receive_text()
+
+            new_chat: Chat = Chat(id=str(uuid4()), data=data)
+            db.add(new_chat)
+            db.commit()
+            db.flush()
+            print(new_chat)
+
+            msg = {
+                "msg": data,
+                "created": new_chat.created.strftime("%m/%d/%Y %-I:%M:%S %p"),
+            }
             await manager.broadcast_json(msg)
     except (ConnectionClosedError, WebSocketDisconnect) as ex:
         manager.disconnect(websocket=websocket)
