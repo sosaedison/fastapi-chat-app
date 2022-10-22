@@ -1,27 +1,22 @@
-from sqlalchemy import Column, Integer, String, Boolean
-from database import Base
+from sqlalchemy.sql import func
+
+from sqlalchemy import Column, DateTime, Integer, String, Boolean
+from base import Base
 
 
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
-    is_active = Column(Boolean, default=True)
+    id: Column = Column(String, primary_key=True, index=True)
+    first_name: Column = Column(String)
+    last_name: Column = Column(String)
+    email: Column = Column(String, unique=True, index=True)
+    profile_image_url: Column = Column(String)
 
 
-from typing import Union
-from pydantic import BaseModel, EmailStr
+class Chat(Base):
+    __tablename__: str = "chats"
 
-
-class UserIn(BaseModel):
-    first_name: str
-    last_name: str
-    email: EmailStr
-    profile_img_url: Union[str, None] = None
-
-
-class UserOut(BaseModel):
-    first_name: str
-    profile_img_url: Union[str, None] = None
+    id: Column = Column(String, primary_key=True)
+    data: Column = Column(String)
+    created: Column = Column(DateTime(timezone=True), default=func.now())
