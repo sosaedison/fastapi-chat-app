@@ -12,7 +12,7 @@ function App() {
   const handleGoogleResponseCallBack = (response) => {
     let userObj = jwt_decode(response.credential);
 
-    fetch(`${process.env.REACT_APP_LOCAL_URL}/user/login`, {
+    fetch(`${process.env.REACT_APP_LOCAL_URL}/user/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
