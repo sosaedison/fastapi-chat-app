@@ -5,17 +5,18 @@ from websockets.exceptions import ConnectionClosedError
 from starlette.websockets import WebSocketDisconnect
 
 from sqlalchemy.orm import Session
+
 from models import User, Chat
 
 from websocket_manager import ConnectionManager
 
 from deps import get_db
-from utils import now_as_str
 from schemas import UserIn, UserOut
 
 from base import Base
 from database import engine, SessionLocal as session
 
+# wipe the database on app startup
 Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
@@ -51,19 +52,21 @@ def home():
 @app.post("/user/register", response_model=UserOut)
 def user(user: UserIn, db: Session = Depends(get_db)) -> UserOut:
     new_user = User(
-        id=uuid4(),
+        id=str(uuid4()),
         first_name=user.first_name,
         last_name=user.last_name,
         email=user.email,
         profile_image_url=user.profile_img_url,
     )
-    db.add(new_user)
-    db.commit()
+    with db.begin():
+        db.add(new_user)
     return user
 
 
 @app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket, db: Session = Depends(get_db)):
+async def websocket_endpoint(
+    websocket: WebSocket, db: Session = Depends(get_db)
+) -> None:
     await manager.connect(websocket=websocket, messages=chat_db)
     try:
         while True:
@@ -71,10 +74,8 @@ async def websocket_endpoint(websocket: WebSocket, db: Session = Depends(get_db)
             data: str = await websocket.receive_text()
 
             new_chat: Chat = Chat(id=str(uuid4()), data=data)
-            db.add(new_chat)
-            db.commit()
-            db.flush()
-            print(new_chat)
+            with db.begin():
+                db.add(new_chat)
 
             msg = {
                 "msg": data,
