@@ -7,7 +7,7 @@ services:
       context: ./api
       dockerfile: ./Dockerfile
     volumes:
-      - ./api:/app
+      - ./api/chatappapi:/app
     ports:
       - 8000:8000
   chatappweb:
