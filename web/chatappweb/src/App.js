@@ -1,4 +1,5 @@
 import "./App.css";
+import Avatar from "@mui/material/Avatar";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 
@@ -83,6 +84,7 @@ function App() {
         <>
           <div>
             <img src={user.picture} alt="User Profile" />
+            <Avatar alt="User Profile Image" src={user.picture} />
             <h3>{`${user.given_name} ${user.family_name}`}</h3>
           </div>
           <div id="chat">
