@@ -1,22 +1,22 @@
-<mxfile host="app.diagrams.net" modified="2022-11-01T18:37:02.246Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="Cr4VEQ7mtehMHJEEFx2R" version="20.5.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-11-04T01:30:16.384Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="aH-ZHIEUgZi2nnxE0Mh4" version="20.5.1" type="github">
   <diagram id="80dqpvGt4WXPadcpEv04" name="Page-1">
-    <mxGraphModel dx="1033" dy="656" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="826" dy="525" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="fP7qJhmR6OO3j8H167al-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="210" y="90" width="770" height="530" as="geometry" />
         </mxCell>
-        <mxCell id="fP7qJhmR6OO3j8H167al-4" value="User Info" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="fP7qJhmR6OO3j8H167al-4" value="User Info" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#21201F;" parent="1" vertex="1">
           <mxGeometry x="210" y="510" width="280" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="fP7qJhmR6OO3j8H167al-5" value="CHAT ROOMS" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="fP7qJhmR6OO3j8H167al-5" value="CHAT ROOMS" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#21201F;" parent="1" vertex="1">
           <mxGeometry x="210" y="90" width="280" height="420" as="geometry" />
         </mxCell>
-        <mxCell id="fP7qJhmR6OO3j8H167al-6" value="SEND CHATS" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="fP7qJhmR6OO3j8H167al-6" value="SEND CHATS" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#21201F;" parent="1" vertex="1">
           <mxGeometry x="490" y="580" width="490" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="fP7qJhmR6OO3j8H167al-7" value="CHATS" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="fP7qJhmR6OO3j8H167al-7" value="CHATS" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#21201F;" parent="1" vertex="1">
           <mxGeometry x="490" y="90" width="490" height="490" as="geometry" />
         </mxCell>
         <mxCell id="fP7qJhmR6OO3j8H167al-10" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
@@ -27,6 +27,12 @@
         </mxCell>
         <mxCell id="fP7qJhmR6OO3j8H167al-12" value="timestamp" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="900" y="548.5" width="60" height="13" as="geometry" />
+        </mxCell>
+        <mxCell id="0z-Q35zV5J191td1DN85-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#5F5F60;" vertex="1" parent="1">
+          <mxGeometry x="520" y="590" width="420" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0z-Q35zV5J191td1DN85-2" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#0B6E4F;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/material-core/23/send-128.png;fillColor=#5F5F60;imageBackground=none;" vertex="1" parent="1">
+          <mxGeometry x="940" y="585" width="30" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
